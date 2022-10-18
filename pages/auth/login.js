@@ -12,6 +12,7 @@ export default function Login() {
             Password
             <input type="password" placeholder="Enter your password" className="input" />
           </label>
+          <button className="btn btn-success" type="submit">Submit</button>
         </form>
       </div>
     </>
