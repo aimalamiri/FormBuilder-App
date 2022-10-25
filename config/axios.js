@@ -9,10 +9,7 @@ if(!ISSERVER) {
   jwtToken = jwt;
 }
 
-
-const axios = AxiosInstance.create({
-  baseURL: process.env.REACT_APP_API_URL,
+export default AxiosInstance.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
   headers: { Authorization: jwtToken }
 });
-
-export default axios;
