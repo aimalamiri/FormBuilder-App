@@ -1,10 +1,8 @@
 import AxiosInstance from 'axios';
 
-const ISSERVER = typeof window === "undefined";
-
 let jwtToken = null;
 
-if(!ISSERVER) {
+if (typeof window === "undefined") {
   const { jwt } = JSON.parse(localStorage.getItem('jwt')) || '';
   jwtToken = jwt;
 }

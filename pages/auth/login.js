@@ -1,22 +1,21 @@
 import { useState } from 'react';
-import axios from '../../config/axios';
+import { login } from '../../api/auth';
 
 export default function Login() {
   const data = {email: '', password: ''};
   const [credentials, setCredentials] = useState(data);
 
+  const {email, password} = credentials;
+
   const submit = (e) => {
     e.preventDefault();
-    axios.post('/login', credentials).then((res) => {
-      console.log(res.data);
-    });
+    login(email, password);
   };
 
   const inputHandler = (e) => {
     setCredentials({...credentials, [e.target.name]: e.target.value});
   };
 
-  const {email, password} = credentials;
 
   return (
     <>
