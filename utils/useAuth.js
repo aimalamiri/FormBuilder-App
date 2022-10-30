@@ -18,7 +18,7 @@ const useAuth = () => {
       const userData = JSON.parse(localStorage.getItem('user')) || {};
 
       if (jwt && userData) {
-        if (router.pathname === '/auth/login') {
+        if (router.pathname === '/auth/login' || router.pathname === '/auth/signup') {
           router.push('/');
         }
 
