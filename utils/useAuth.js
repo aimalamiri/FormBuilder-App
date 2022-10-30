@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { login } from '../redux/reducers/auth/authSlice';
+import openRoutes from '../config/openRoutes';
 
 const useAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -17,14 +18,14 @@ const useAuth = () => {
       const userData = JSON.parse(localStorage.getItem('user')) || {};
 
       if (jwt && userData) {
-        if (router.pathname === '/auth/login') {
+        if (router.pathname === '/auth/login' || router.pathname === '/auth/signup') {
           router.push('/');
         }
 
         setIsAuthenticated(true);
         dispatch(login({user: userData, jwt}));
       } else {
-        if (router.pathname !== '/auth/login') {
+        if (openRoutes.indexOf(router.pathname) === -1) {
           router.push('/auth/login');
         }
       }
