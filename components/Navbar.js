@@ -3,6 +3,7 @@ import useAuth from '../utils/useAuth';
 
 export default function Navbar() {
   const [auth] = useAuth();
+
   return (
     <nav className="w-100 py-4 bg-white">
       <ul className="flex justify-center items-center gap-4 text-gray-700 hover:opacity-90 text-lg">

@@ -7,7 +7,7 @@ import useAuth from '../../utils/useAuth';
 export default function Login() {
   const data = {email: '', password: ''};
   const [credentials, setCredentials] = useState(data);
-  const [auth, setIsAuthenticated] = useAuth();
+  const [, setIsAuthenticated] = useAuth();
   const dispatch = useDispatch();
 
   const {email, password} = credentials;
