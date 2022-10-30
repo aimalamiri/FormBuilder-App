@@ -9,17 +9,24 @@ export default function Signup() {
   const [credentials, setCredentials] = useState(data);
   const [, setIsAuthenticated] = useAuth();
   const dispatch = useDispatch();
+  const [error, setError] = useState('');
 
   const {first_name, last_name, email, password} = credentials;
 
   const submit = (e) => {
     e.preventDefault();
+    setError('');
     signup(credentials).then((res) => {
       const {user, jwt} = res;
-      dispatch(login({user, jwt}));
-      setIsAuthenticated(true);
+
+      if (user && jwt) {
+        dispatch(login({user, jwt}));
+        setCredentials(data);
+        setIsAuthenticated(true);
+      } else {
+        if (res.response) setError(res.response.data.error);
+      }
     });
-    setCredentials(data);
   };
 
   const inputHandler = (e) => {
@@ -34,20 +41,21 @@ export default function Signup() {
         <form onSubmit={submit}>
           <label htmlFor="first_name" className="label">
             Firstname
-            <input type="text" name="first_name" placeholder="Enter your firstname" className="input" value={first_name} onChange={inputHandler} />
+            <input type="text" name="first_name" placeholder="Enter your firstname" className="input" value={first_name} onChange={inputHandler} required />
           </label>
           <label htmlFor="last_name" className="label">
             Lastname
-            <input type="text" name="last_name" placeholder="Enter your lastname" className="input" value={last_name} onChange={inputHandler} />
+            <input type="text" name="last_name" placeholder="Enter your lastname" className="input" value={last_name} onChange={inputHandler} required />
           </label>
           <label htmlFor="email" className="label">
             Email
-            <input type="email" name="email" placeholder="Enter your email" className="input" value={email} onChange={inputHandler} />
+            <input type="email" name="email" placeholder="Enter your email" className="input" value={email} onChange={inputHandler} required />
           </label>
           <label htmlFor="password" className="label my-4">
             Password
-            <input type="password" name="password" placeholder="Enter your password" className="input" value={password} onChange={inputHandler} />
+            <input type="password" name="password" placeholder="Enter your password" className="input" value={password} onChange={inputHandler} required />
           </label>
+          {error && <div className="py-2 text-white px-4 bg-red-700 my-4">{error}</div>}
           <button className="btn btn-success" type="submit">Submit</button>
         </form>
       </div>
