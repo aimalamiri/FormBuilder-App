@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login as loginApi } from '../../api/auth';
@@ -40,7 +41,10 @@ export default function Login() {
             Password
             <input type="password" name="password" placeholder="Enter your password" className="input" value={password} onChange={inputHandler} />
           </label>
-          <button className="btn btn-success" type="submit">Submit</button>
+          <div className="flex justify-between items-center">
+            <button className="btn btn-success" type="submit">Login</button>
+            <Link href={'/auth/signup'}>Signup</Link>
+          </div>
         </form>
       </div>
     </>

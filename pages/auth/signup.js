@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { signup } from '../../api/auth';
@@ -56,7 +57,10 @@ export default function Signup() {
             <input type="password" name="password" placeholder="Enter your password" className="input" value={password} onChange={inputHandler} required />
           </label>
           {error && <div className="py-2 text-white px-4 bg-red-700 my-4">{error}</div>}
-          <button className="btn btn-success" type="submit">Submit</button>
+          <div className="flex justify-between items-center">
+            <button className="btn btn-success" type="submit">Register</button>
+            <Link href={'/auth/login'}>Login</Link>
+          </div>
         </form>
       </div>
     </>
