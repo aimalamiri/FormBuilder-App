@@ -7,7 +7,6 @@ const useAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const auth = useSelector(state => state.auth);
   const dispatch = useDispatch();
-  const user = useSelector(state => state.auth.user);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -21,7 +20,7 @@ const useAuth = () => {
     }
   }, [isAuthenticated]);
 
-  return [isAuthenticated, auth, setIsAuthenticated];
+  return [auth, setIsAuthenticated];
 }
 
 export default useAuth;

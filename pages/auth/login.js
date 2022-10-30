@@ -7,7 +7,7 @@ import useAuth from '../../utils/useAuth';
 export default function Login() {
   const data = {email: '', password: ''};
   const [credentials, setCredentials] = useState(data);
-  const [isAuthenticated, auth, setIsAuthenticated] = useAuth();
+  const [auth, setIsAuthenticated] = useAuth();
   const dispatch = useDispatch();
 
   const {email, password} = credentials;
@@ -20,7 +20,6 @@ export default function Login() {
       setIsAuthenticated(true);
     });
     setCredentials(data);
-
   };
 
   const inputHandler = (e) => {
@@ -31,7 +30,7 @@ export default function Login() {
   return (
     <>
       <div className="bg-green-600 text-white p-5">
-        {isAuthenticated ? `You are logged in ${auth.user.first_name}` : 'You are not logged in'}
+        {auth.user.first_name ? `You are logged in ${auth.user.first_name}` : 'You are not logged in'}
       </div>
       <div className="card w-1/3 mx-auto">
         <h1 className="text-xl text-center mb-9">Login</h1>
