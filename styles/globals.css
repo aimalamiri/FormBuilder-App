@@ -3,7 +3,25 @@
 @tailwind utilities;
 
 body {
-  background-color: #eee;
+ @apply text-gray-700 bg-gray-200;
 }
 
+.card {
+  @apply bg-white px-5 py-4 rounded;
+}
 
+.label {
+  @apply flex flex-col gap-y-1;
+}
+
+.input {
+  @apply px-3 py-2 border border-blue-100 rounded w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-transparent;
+}
+
+.btn {
+  @apply py-2 px-5 rounded hover:opacity-80 transition ease-in delay-200;
+}
+
+.btn-success {
+ @apply bg-green-700 text-white;
+}
