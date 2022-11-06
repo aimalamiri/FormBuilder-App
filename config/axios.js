@@ -1,4 +1,4 @@
-import AxiosInstance from 'axios';
+import axios from 'axios';
 
 let jwtToken = null;
 
@@ -7,7 +7,7 @@ if (typeof window !== "undefined") {
   jwtToken = jwt;
 }
 
-export default AxiosInstance.create({
+export default axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
-  headers: { Authorization: jwtToken }
+  headers: { Authorization: jwtToken },
 });
