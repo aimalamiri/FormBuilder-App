@@ -17,8 +17,8 @@ const useAuth = () => {
       const userData = JSON.parse(localStorage.getItem('user')) || {};
       const cookie = document.cookie.split('=');
       const jwt = '';
-      if (cookie[cookie.indexOf('Authorization')] && cookie[cookie.indexOf('Authroization') + 1]) {
-        jwt = cookie[cookie.indexOf('Authorization') + 1];
+      if (cookie[cookie.indexOf('authorization')] && cookie[cookie.indexOf('authroization') + 1]) {
+        jwt = cookie[cookie.indexOf('authorization') + 1];
       }
 
       if (jwt && userData) {
