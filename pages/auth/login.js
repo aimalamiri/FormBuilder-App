@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login as loginApi } from '../../api/auth';
+import Input from '../../components/application/input';
 import { login } from '../../redux/reducers/auth/authSlice';
 import useAuth from '../../utils/useAuth';
 
@@ -33,14 +34,8 @@ export default function Login() {
       <div className="card w-1/3 mx-auto">
         <h1 className="text-xl text-center mb-9">Login</h1>
         <form onSubmit={submit}>
-          <label htmlFor="email" className="label">
-            Email
-            <input type="email" name="email" placeholder="Enter your email" className="input" value={email} onChange={inputHandler} />
-          </label>
-          <label htmlFor="password" className="label my-4">
-            Password
-            <input type="password" name="password" placeholder="Enter your password" className="input" value={password} onChange={inputHandler} />
-          </label>
+          <Input type="email" name="email" value={email} onChange={inputHandler} placeholder="Enter your email" className="mb-4" />
+          <Input type="password" name="password" value={password} onChange={inputHandler} placeholder="Enter your password" className="mb-4" />
           <div className="flex justify-between items-center">
             <button className="btn btn-success" type="submit">Login</button>
             <Link href={'/auth/signup'}>Signup</Link>
