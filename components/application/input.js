@@ -1,8 +1,8 @@
-export default function Input({ type = 'text', name, value, onChange, placeholder = '', label = name, className = '' })
+export default function Input({ type = 'text', name, value, onChange, placeholder = '', label = name, className = '', required = false })
 {
   return (
     <label htmlFor="email" className="label">
-      {label}
+      {label.charAt(0).toUpperCase() + label.slice(1)}
       <input
         type={type}
         name={name}
@@ -10,6 +10,7 @@ export default function Input({ type = 'text', name, value, onChange, placeholde
         className={`input ${className}`}
         value={value}
         onChange={onChange}
+        required={required}
       />
     </label>
   );

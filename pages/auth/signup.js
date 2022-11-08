@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { signup } from '../../api/auth';
 import { login } from '../../redux/reducers/auth/authSlice';
 import useAuth from '../../utils/useAuth';
+import Input from '../../components/application/input';
 
 export default function Signup() {
   const data = {first_name: '', last_name: '', email: '', password: ''};
@@ -40,22 +41,10 @@ export default function Signup() {
       <div className="card w-1/3 mx-auto">
         <h1 className="text-xl text-center mb-9">Signup</h1>
         <form onSubmit={submit}>
-          <label htmlFor="first_name" className="label">
-            Firstname
-            <input type="text" name="first_name" placeholder="Enter your firstname" className="input" value={first_name} onChange={inputHandler} required />
-          </label>
-          <label htmlFor="last_name" className="label">
-            Lastname
-            <input type="text" name="last_name" placeholder="Enter your lastname" className="input" value={last_name} onChange={inputHandler} required />
-          </label>
-          <label htmlFor="email" className="label">
-            Email
-            <input type="email" name="email" placeholder="Enter your email" className="input" value={email} onChange={inputHandler} required />
-          </label>
-          <label htmlFor="password" className="label my-4">
-            Password
-            <input type="password" name="password" placeholder="Enter your password" className="input" value={password} onChange={inputHandler} required />
-          </label>
+          <Input name="last_name" value={last_name} onChange={inputHandler} placeholder="Enter your lastname" className="mb-4" label="Firstname" required={true} />
+          <Input name="first_name" value={first_name} onChange={inputHandler} placeholder="Enter your firstname" className="mb-4" label="Lastname" required={true} />
+          <Input type="email" name="email" value={email} onChange={inputHandler} placeholder="Enter your email" className="mb-4" required={true} />
+          <Input type="password" name="password" value={password} onChange={inputHandler} placeholder="Enter your password" className="mb-4" required={true} />
           {error && <div className="py-2 text-white px-4 bg-red-700 my-4">{error}</div>}
           <div className="flex justify-between items-center">
             <button className="btn btn-success" type="submit">Register</button>

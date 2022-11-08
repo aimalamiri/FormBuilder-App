@@ -34,8 +34,8 @@ export default function Login() {
       <div className="card w-1/3 mx-auto">
         <h1 className="text-xl text-center mb-9">Login</h1>
         <form onSubmit={submit}>
-          <Input type="email" name="email" value={email} onChange={inputHandler} placeholder="Enter your email" className="mb-4" />
-          <Input type="password" name="password" value={password} onChange={inputHandler} placeholder="Enter your password" className="mb-4" />
+          <Input type="email" name="email" value={email} onChange={inputHandler} placeholder="Enter your email" className="mb-4" required={true} />
+          <Input type="password" name="password" value={password} onChange={inputHandler} placeholder="Enter your password" className="mb-4" required={true} />
           <div className="flex justify-between items-center">
             <button className="btn btn-success" type="submit">Login</button>
             <Link href={'/auth/signup'}>Signup</Link>
