@@ -2,11 +2,21 @@ import Input from '../../components/application/input';
 import TextArea from '../../components/application/textarea';
 
 import { useState } from 'react';
+import { createProject } from '../../api/projects';
 
 export default function Create() {
   const data = { name: '', description: '' };
   const [project, setProject] = useState(data);
   const { name, description } = project;
+  const [success, setSuccess] = useState(false);
+
+  const add = (e) => {
+    e.preventDefault();
+    createProject(project).then(res => {
+      setProject(data);
+      setSuccess(true);
+    });
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,7 +26,8 @@ export default function Create() {
   return (
     <div className="card w-1/3 mx-auto">
       <h1 className="text-xl text-center mb-9">Create Project</h1>
-      <form>
+      {success ? <div className="my-4 p-5 bg-green-700 text-white">The project has been created successfully!</div> : '' }
+      <form onSubmit={add}>
         <Input
           name="name"
           placeholder="Enter project name"

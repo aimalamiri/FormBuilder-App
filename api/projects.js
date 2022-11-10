@@ -10,3 +10,14 @@ export const getProjects = async () => {
       .catch((error) => error);
   }
 };
+
+export const createProject = async (project) => {
+  if (typeof window !== 'undefined') {
+    return await axios
+      .post('/api/projects', {project})
+      .then((res) => {
+        return res.data;
+      })
+      .catch((error) => error);
+  }
+};
