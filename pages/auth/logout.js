@@ -9,7 +9,7 @@ export default function Logout() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      localStorage.removeItem('jwt');
+      document.cookie = `authorization=; path=/;`;
       localStorage.removeItem('user');
       router.push('/');
       dispatch(login({user: {}, jwt: ''}));

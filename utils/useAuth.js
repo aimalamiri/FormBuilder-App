@@ -7,15 +7,19 @@ import openRoutes from '../config/openRoutes';
 
 const useAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const auth = useSelector(state => state.auth);
+  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const router = useRouter();
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const jwt = JSON.parse(localStorage.getItem('jwt')) || '';
+    if (typeof window !== 'undefined') {
       const userData = JSON.parse(localStorage.getItem('user')) || {};
+      const cookie = document.cookie.split('=');
+      const jwt = '';
+      if (cookie[cookie.indexOf('authorization')] && cookie[cookie.indexOf('authroization') + 1]) {
+        jwt = cookie[cookie.indexOf('authorization') + 1];
+      }
 
       if (jwt && userData) {
         if (router.pathname === '/auth/login' || router.pathname === '/auth/signup') {
@@ -23,7 +27,7 @@ const useAuth = () => {
         }
 
         setIsAuthenticated(true);
-        dispatch(login({user: userData, jwt}));
+        dispatch(login({ user: userData, jwt }));
       } else {
         if (openRoutes.indexOf(router.pathname) === -1) {
           router.push('/auth/login');
@@ -33,6 +37,6 @@ const useAuth = () => {
   }, [isAuthenticated]);
 
   return [auth, setIsAuthenticated];
-}
+};
 
 export default useAuth;
