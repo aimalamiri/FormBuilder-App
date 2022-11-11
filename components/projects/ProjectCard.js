@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import ContentEditable from 'react-contenteditable';
+import Swal from 'sweetalert2';
 import { PencilIcon, CheckIcon, NoSymbolIcon, TrashIcon } from '@heroicons/react/24/solid';
-import { updateProject } from '../../api/projects';
+import { deleteProject, updateProject } from '../../api/projects';
 
 export default function ProjectCard({ project }) {
   const [editable, setEditable] = useState(true);
@@ -27,9 +28,25 @@ export default function ProjectCard({ project }) {
   const update = () => {
     updateProject(data, project.id).then((res) => {
       if (res) {
+        Swal.fire({
+          title: 'Success',
+          text: 'The project has been updated!',
+          icon: 'success',
+        });
         setEditable(true);
       }
-      return true;
+    });
+  };
+
+  const remove = () => {
+    deleteProject(project.id).then((res) => {
+      if (res) {
+        Swal.fire({
+          title: 'Success',
+          text: 'The project has been deleted!',
+          icon: 'success',
+        });
+      }
     });
   };
 
@@ -54,10 +71,10 @@ export default function ProjectCard({ project }) {
           </button>
         ) : (
           <>
-            <button onClick={update} className="bg-gray-50 border-5 p-2">
+            <button onClick={update}>
               <CheckIcon className="h-5 w-5 text-green-700 hover:text-green-600" />
             </button>
-            <button>
+            <button onClick={remove}>
               <TrashIcon className="h-5 w-5 text-red-600 hover:text-red-500" />
             </button>
             <button onClick={discard}>

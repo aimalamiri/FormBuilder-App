@@ -32,3 +32,14 @@ export const updateProject = async (project, id) => {
       .catch((error) => error);
   }
 };
+
+export const deleteProject = async (id) => {
+  if (typeof window !== 'undefined') {
+    return await axios
+      .delete(`/api/projects/${id}`)
+      .then((res) => {
+        return res.data;
+      })
+      .catch((error) => error);
+  }
+};
