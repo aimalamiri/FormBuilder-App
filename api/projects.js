@@ -21,3 +21,14 @@ export const createProject = async (project) => {
       .catch((error) => error);
   }
 };
+
+export const updateProject = async (project, id) => {
+  if (typeof window !== 'undefined') {
+    return await axios
+      .patch(`/api/projects/${id}`, {project})
+      .then((res) => {
+        return res.data;
+      })
+      .catch((error) => error);
+  }
+};
