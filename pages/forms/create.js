@@ -1,6 +1,9 @@
-import Input from '../../components/application/textarea';
+import { useState } from 'react';
+import { v4 as uuid } from 'uuid';
 
-export default function create() {
+export default function Create() {
+  const [inputs, setInputs] = useState([]);
+
   const types = [
     {
       type: 'input',
@@ -24,6 +27,10 @@ export default function create() {
     },
   ];
 
+  const addInput = (type) => {
+    setInputs([...inputs, {id: uuid(), type: type}]);
+  };
+
   return (
     <div>
       <h1 className="text-3xl font-semibold">Create a new form</h1>
@@ -31,7 +38,13 @@ export default function create() {
         <div className="card">
           <h2 className="text-lg">Inputs</h2>
           {types.map((type) => (
-            <button className="btn btn-gray w-full mt-3" key={type.type}>{type.title}</button>
+            <button
+              className="btn btn-gray w-full mt-3"
+              key={type.type}
+              onClick={() => addInput(type.type)}
+            >
+              {type.title}
+            </button>
           ))}
         </div>
         <div className="card col-span-2">
