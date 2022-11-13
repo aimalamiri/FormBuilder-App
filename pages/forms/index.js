@@ -8,5 +8,5 @@ export default function Index() {
         <button className="btn btn-success mt-4">Create Form</button>
       </Link>
     </div>
-  )
+  );
 }
