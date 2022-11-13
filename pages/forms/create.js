@@ -8,27 +8,36 @@ export default function Create() {
     {
       type: 'input',
       title: 'Textbox',
+      tagname: 'input',
+      clsname: 'input',
     },
     {
-      type: 'textarea',
       title: 'Textarea',
+      tagname: 'textarea',
+      clsname: 'input',
     },
     {
       type: 'checkbox',
       title: 'Checkbox',
+      tagname: 'input',
+      clsname: 'input',
     },
     {
       type: 'radio',
       title: 'Radio',
+      tagname: 'input',
+      clsname: 'input',
     },
     {
       type: 'select',
       title: 'Select',
+      tagname: 'select',
+      clsname: 'input',
     },
   ];
 
   const addInput = (type) => {
-    setInputs([...inputs, {id: uuid(), type: type}]);
+    setInputs([...inputs, {...type, id: uuid()}]);
   };
 
   return (
@@ -41,14 +50,17 @@ export default function Create() {
             <button
               className="btn btn-gray w-full mt-3"
               key={type.type}
-              onClick={() => addInput(type.type)}
+              onClick={() => addInput(type)}
             >
               {type.title}
             </button>
           ))}
         </div>
         <div className="card col-span-2">
-          <h1>View</h1>
+          <h2 className="text-lg">View</h2>
+          {inputs.map((input) => (
+            <input.tagname className={input.clsname} type={input.type} key={input.id} />
+          ))}
         </div>
         <div className="card">
           <h1>Props</h1>
