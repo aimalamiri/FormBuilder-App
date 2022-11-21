@@ -18,11 +18,29 @@ export default function InputField({ input, setActiveField }) {
     return (
       <input.tagname className={input.clsname} key={input.id} onClick={() => showProps(input)} />
     );
+  } else if (input.tagname === 'checkbox') {
+    return (
+      <div onClick={() => showProps(input)}>
+        {input.properties.options.map((option) => (
+          <label for={option} key={option}>
+            {option}
+            <input
+              type="checkbox"
+              className={input.clsname}
+              id={option}
+              value={option}
+            />
+          </label>
+        ))}
+      </div>
+    );
   } else if (input.tagname === 'select') {
     return (
       <input.tagname className={input.clsname} key={input.id} onClick={() => showProps(input)}>
         {input.properties.options.map((option) => (
-          <option value={option} key={option}>{option}</option>
+          <option value={option} key={option}>
+            {option}
+          </option>
         ))}
       </input.tagname>
     );

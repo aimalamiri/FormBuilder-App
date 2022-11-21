@@ -25,12 +25,14 @@ export default function Create() {
         placeholder: '',
       },
     },
-    // {
-    //   type: 'checkbox',
-    //   title: 'Checkbox',
-    //   tagname: 'input',
-    //   clsname: 'input',
-    // },
+    {
+      title: 'Checkbox',
+      tagname: 'checkbox',
+      clsname: 'input',
+      properties: {
+        options: ['Option'],
+      },
+    },
     // {
     //   type: 'radio',
     //   title: 'Radio',
