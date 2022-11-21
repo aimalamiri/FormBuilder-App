@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import FieldType from '../../components/application/FieldType';
+import InputField from '../../components/application/InputField';
 import { getType, changeFieldType } from '../../components/application/InputField/inputOptions';
 
 export default function Create() {
@@ -24,6 +25,9 @@ export default function Create() {
       title: 'Textarea',
       tagname: 'textarea',
       clsname: 'input',
+      properties: {
+        placeholder: '',
+      },
     },
     // {
     //   type: 'checkbox',
@@ -37,12 +41,14 @@ export default function Create() {
     //   tagname: 'input',
     //   clsname: 'input',
     // },
-    // {
-    //   type: 'select',
-    //   title: 'Select',
-    //   tagname: 'select',
-    //   clsname: 'input',
-    // },
+    {
+      title: 'Select',
+      tagname: 'select',
+      clsname: 'input',
+      properties: {
+        options: ['One', 'two', 'three', 'four'],
+      },
+    },
   ];
 
   const addInput = (field) => {
@@ -68,12 +74,7 @@ export default function Create() {
         <div className="card col-span-2">
           <h2 className="text-lg">View</h2>
           {inputs.map((input) => (
-            <input.tagname
-              className={input.clsname}
-              type={getType(input.properties.type)}
-              key={input.id}
-              onClick={() => showProps(input)}
-            />
+            <InputField input={input} setActiveField={setActiveField} key={input.id} />
           ))}
         </div>
         <div className="card">
@@ -87,7 +88,10 @@ export default function Create() {
                 </div>
               ) : (
                 <div key={property[0]}>
-                  <FieldType types={property} onChange={(e) => changeFieldType(e, inputs, setInputs, activeField)} />
+                  <FieldType
+                    types={property}
+                    onChange={(e) => changeFieldType(e, inputs, setInputs, activeField)}
+                  />
                 </div>
               )}
             </div>
