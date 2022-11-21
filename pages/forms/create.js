@@ -1,15 +1,11 @@
 import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
-import FieldType from '../../components/application/FieldType';
 import InputField from '../../components/application/InputField';
-import { getType, changeFieldType } from '../../components/application/InputField/inputOptions';
+import Property from '../../components/application/Property';
 
 export default function Create() {
   const [inputs, setInputs] = useState([]);
   const [activeField, setActiveField] = useState({});
-  const showProps = (field) => {
-    setActiveField({ ...field.properties, id: field.id });
-  };
 
   const fields = [
     {
@@ -46,7 +42,7 @@ export default function Create() {
       tagname: 'select',
       clsname: 'input',
       properties: {
-        options: ['One', 'two', 'three', 'four'],
+        options: [],
       },
     },
   ];
@@ -80,21 +76,7 @@ export default function Create() {
         <div className="card">
           <h2 className="text-lg">Properties</h2>
           {Object.entries(activeField).map((property) => (
-            <div key={property[0]} className="mt-4">
-              {property[0] !== 'type' ? (
-                <div key={property[0]} className="flex justify-between">
-                  <label className="text-sm p-3">{property[0]}</label>
-                  <input className="input" type="text" value={property[1]} />
-                </div>
-              ) : (
-                <div key={property[0]}>
-                  <FieldType
-                    types={property}
-                    onChange={(e) => changeFieldType(e, inputs, setInputs, activeField)}
-                  />
-                </div>
-              )}
-            </div>
+            <Property property={property} inputs={inputs} setInputs={setInputs} activeField={activeField} key={property[0]} />
           ))}
         </div>
       </div>

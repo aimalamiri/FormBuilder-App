@@ -1,4 +1,4 @@
-import { getType } from './InputField/inputOptions';
+import { getType } from './InputField/typeOptions';
 
 export default function InputField({ input, setActiveField }) {
   const showProps = (field) => {
