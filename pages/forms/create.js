@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import FieldType from '../../components/application/FieldType';
+import { getType, changeFieldType } from '../../components/application/InputField/inputOptions';
 
 export default function Create() {
   const [inputs, setInputs] = useState([]);
@@ -48,30 +49,6 @@ export default function Create() {
     setInputs([...inputs, { ...field, id: uuid() }]);
   };
 
-  const getType = (types) => Object.entries(types).filter((type) => type[1] === true)[0][0];
-
-  const changeFieldType = (e) => {
-    const allInputs = [...inputs];
-    const newInputs = allInputs.map((input) => {
-      if (input.id === activeField.id) {
-        const falseEntries = Object.entries(input.properties.type).map((t) => {
-          if (t[0] === e.target.value) {
-            t[1] = true;
-          } else {
-            t[1] = false;
-          }
-          return [t[0], t[1]];
-        });
-        const types = Object.fromEntries(falseEntries);
-        input.properties.type = types;
-        return input;
-      }
-      return input;
-    });
-    setInputs({});
-    setInputs([...newInputs]);
-  };
-
   return (
     <div>
       <h1 className="text-3xl font-semibold">Create a new form</h1>
@@ -110,7 +87,7 @@ export default function Create() {
                 </div>
               ) : (
                 <div key={property[0]}>
-                  <FieldType types={property} onChange={changeFieldType} />
+                  <FieldType types={property} onChange={(e) => changeFieldType(e, inputs, setInputs, activeField)} />
                 </div>
               )}
             </div>
