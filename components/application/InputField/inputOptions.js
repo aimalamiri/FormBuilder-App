@@ -5,19 +5,15 @@
     const newInputs = allInputs.map((input) => {
       if (input.id === activeField.id) {
         const falseEntries = Object.entries(input.properties.type).map((t) => {
-          if (t[0] === e.target.value) {
-            t[1] = true;
-          } else {
-            t[1] = false;
-          }
+          t[1] = t[0] === e.target.value;
+
           return [t[0], t[1]];
         });
-        const types = Object.fromEntries(falseEntries);
-        input.properties.type = types;
+        input.properties.type = Object.fromEntries(falseEntries);
         return input;
       }
       return input;
     });
-    setInputs({});
+    setInputs({}); // Setting inputs to an empty object so that it re-rerenders the DOM after setting the actual inputs
     setInputs([...newInputs]);
   };
