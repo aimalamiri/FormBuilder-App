@@ -33,12 +33,14 @@ export default function Create() {
         options: ['Option'],
       },
     },
-    // {
-    //   type: 'radio',
-    //   title: 'Radio',
-    //   tagname: 'input',
-    //   clsname: 'input',
-    // },
+    {
+      title: 'Radio',
+      tagname: 'radio',
+      clsname: 'input',
+      properties: {
+        options: ['Option'],
+      },
+    },
     {
       title: 'Select',
       tagname: 'select',
