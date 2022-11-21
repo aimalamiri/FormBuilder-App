@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default function FieldType({ types, onChange }) {
-  console.log(types);
   return (
     <div className="flex justify-between">
       <label className="text-sm p-3">{types[0]}</label>
