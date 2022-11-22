@@ -20,13 +20,13 @@ export default function InputField({ input, setActiveField }) {
     );
   } else if (input.tagname === 'checkbox') {
     return (
-      <div onClick={() => showProps(input)}>
+      <div onClick={() => showProps(input)} className="flex items-center gap-6 flex-wrap my-5">
         {input.properties.options.map((option) => (
-          <label for={option} key={option}>
+          <label htmlFor={option} key={option} className="flex items-center">
             {option}
             <input
               type="checkbox"
-              className={input.clsname}
+              className="ml-2"
               id={option}
               value={option}
             />
@@ -36,13 +36,13 @@ export default function InputField({ input, setActiveField }) {
     );
   } else if (input.tagname === 'radio') {
     return (
-      <div onClick={() => showProps(input)}>
+      <div onClick={() => showProps(input)} className="flex items-center gap-6 flex-wrap my-5">
         {input.properties.options.map((option) => (
-          <label for={option} key={option}>
+          <label htmlFor={option} key={option} className="flex items-center">
             {option}
             <input
               type="radio"
-              className={input.clsname}
+              className="ml-2"
               id={option}
               name={input.id}
               value={option}
