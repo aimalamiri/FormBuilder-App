@@ -46,6 +46,7 @@ export default function Create() {
       clsname: 'input',
       properties: {
         title: 'Select',
+        placeholder: 'Select an option',
         options: [],
       },
     },
