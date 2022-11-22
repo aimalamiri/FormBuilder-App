@@ -9,7 +9,7 @@ export default function Property({ property, inputs, setInputs, activeField }) {
     if (property[0] === 'options') {
       setOptions(property[1].join('\n'));
     }
-  }, []);
+  }, [property[1]]);
 
   const changeOptions = (e) => {
     setOptions(e.target.value.split('\n').join('\n'));
