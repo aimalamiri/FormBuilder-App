@@ -9,43 +9,43 @@ export default function Create() {
 
   const fields = [
     {
-      title: 'Textbox',
       tagname: 'input',
       clsname: 'input',
       properties: {
+        title: 'Textbox',
         type: { text: true, number: false, email: false, password: false },
         placeholder: '',
       },
     },
     {
-      title: 'Textarea',
       tagname: 'textarea',
       clsname: 'input',
       properties: {
+        title: 'Textarea',
         placeholder: '',
       },
     },
     {
-      title: 'Checkbox',
       tagname: 'checkbox',
       clsname: 'input',
       properties: {
+        title: 'Checkbox',
         options: ['Option'],
       },
     },
     {
-      title: 'Radio',
       tagname: 'radio',
       clsname: 'input',
       properties: {
+        title: 'Radio',
         options: ['Option'],
       },
     },
     {
-      title: 'Select',
       tagname: 'select',
       clsname: 'input',
       properties: {
+        title: 'Select',
         options: [],
       },
     },
@@ -64,10 +64,10 @@ export default function Create() {
           {fields.map((field) => (
             <button
               className="btn btn-gray w-full mt-3"
-              key={field.title}
+              key={field.properties.title}
               onClick={() => addInput(field)}
             >
-              {field.title}
+              {field.properties.title}
             </button>
           ))}
         </div>
@@ -80,7 +80,13 @@ export default function Create() {
         <div className="card">
           <h2 className="text-lg">Properties</h2>
           {Object.entries(activeField).map((property) => (
-            <Property property={property} inputs={inputs} setInputs={setInputs} activeField={activeField} key={property[0]} />
+            <Property
+              property={property}
+              inputs={inputs}
+              setInputs={setInputs}
+              activeField={activeField}
+              key={property[0]}
+            />
           ))}
         </div>
       </div>
