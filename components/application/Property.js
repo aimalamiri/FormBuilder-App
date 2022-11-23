@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import FieldType from './FieldType';
+import InputType from './InputType';
 import { changeFieldType } from './InputField/typeOptions';
 import { ucFirst } from '../../utils/strings';
 
@@ -52,7 +52,7 @@ export default function Property({ property, inputs, setInputs, activeField }) {
   if (property[0] === 'type') {
     return (
       <div key={property[0]}>
-        <FieldType
+        <InputType
           types={property}
           onChange={(e) => changeFieldType(e, inputs, setInputs, activeField)}
         />

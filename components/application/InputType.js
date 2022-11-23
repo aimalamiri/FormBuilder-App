@@ -1,7 +1,7 @@
 import React from 'react';
 import { ucFirst } from '../../utils/strings';
 
-export default function FieldType({ types, onChange }) {
+export default function InputType({ types, onChange }) {
   return (
     <div className="flex justify-between">
       <label className="py-3" htmlFor={types[0]}>
