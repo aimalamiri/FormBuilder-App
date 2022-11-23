@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import FieldType from './FieldType';
 import { changeFieldType } from './InputField/typeOptions';
+import { ucFirst } from '../../utils/strings';
 
 export default function Property({ property, inputs, setInputs, activeField }) {
   const [options, setOptions] = useState('');
@@ -33,7 +34,7 @@ export default function Property({ property, inputs, setInputs, activeField }) {
 
   const handleChange = (e) => {
     setValue(e.target.value);
-  }
+  };
 
   const updateValue = () => {
     const allInputs = [...inputs];
@@ -59,16 +60,31 @@ export default function Property({ property, inputs, setInputs, activeField }) {
     );
   } else if (property[0] === 'options') {
     return (
-      <div key={property[0]} className="flex justify-between">
-        <label className="text-sm p-3">{property[0]}</label>
-        <textarea className="input" value={options} onChange={changeOptions} onBlur={updateOptions} />
+      <div key={property[0]}>
+        <label className="py-3" htmlFor={property[0]}>
+          {ucFirst(property[0])}
+          <textarea
+            className="input"
+            value={options}
+            onChange={changeOptions}
+            onBlur={updateOptions}
+          />
+        </label>
       </div>
     );
   } else {
     return (
-      <div key={property[0]} className="flex justify-between">
-        <label className="text-sm p-3">{property[0]}</label>
-        <input className="input" type="text" value={value} onChange={handleChange} onBlur={updateValue} />
+      <div key={property[0]}>
+        <label className="py-3" htmlFor={property[0]}>
+          {ucFirst(property[0])}
+          <input
+            className="input"
+            type="text"
+            value={value}
+            onChange={handleChange}
+            onBlur={updateValue}
+          />
+        </label>
       </div>
     );
   }
