@@ -75,7 +75,9 @@ export default function Create() {
         <div className="card col-span-2">
           <h2 className="text-lg">View</h2>
           {inputs.map((input) => (
-            <InputField input={input} setActiveField={setActiveField} key={input.id} />
+            <div className="my-3" key={input.id}>
+              <InputField input={input} setActiveField={setActiveField} key={input.id} />
+            </div>
           ))}
         </div>
         <div className="card">

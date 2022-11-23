@@ -32,7 +32,7 @@ export default function InputField({ input, setActiveField }) {
     );
   } else if (input.tagname === 'checkbox') {
     return (
-      <div onClick={() => showProps(input)} className="my-4">
+      <div onClick={() => showProps(input)}>
         {input.properties.title}
         <div className="flex items-center gap-6 flex-wrap">
           {input.properties.options.map((option) => (
@@ -46,9 +46,9 @@ export default function InputField({ input, setActiveField }) {
     );
   } else if (input.tagname === 'radio') {
     return (
-      <div onClick={() => showProps(input)} className="my-4">
+      <div onClick={() => showProps(input)}>
         {input.properties.title}
-        <div onClick={() => showProps(input)} className="flex items-center gap-6 flex-wrap my-5">
+        <div onClick={() => showProps(input)} className="flex items-center gap-6 flex-wrap">
           {input.properties.options.map((option) => (
             <label htmlFor={option} key={option} className="flex items-center">
               {option}
