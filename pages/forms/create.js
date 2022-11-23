@@ -82,16 +82,20 @@ export default function Create() {
         </div>
         <div className="card">
           <h2 className="text-lg">Properties</h2>
-          {Object.entries(activeField).map((property) => (
-            <div key={property[0]} className="my-3">
-              <Property
-                property={property}
-                inputs={inputs}
-                setInputs={setInputs}
-                activeField={activeField}
-              />
-            </div>
-          ))}
+          {Object.entries(activeField).map((property) => {
+            return property[0] !== 'id' ? (
+              <div key={property[0]} className="my-3">
+                <Property
+                  property={property}
+                  inputs={inputs}
+                  setInputs={setInputs}
+                  activeField={activeField}
+                />
+              </div>
+            ) : (
+              ''
+            );
+          })}
         </div>
       </div>
     </div>
