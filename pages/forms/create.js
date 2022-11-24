@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import InputField from '../../components/application/InputField';
 import Property from '../../components/application/Property';
-import { fields } from '../../utils/fields';
+// import { fields as formElements } from '../../utils/fields';
 
 export default function Create() {
   const [inputs, setInputs] = useState([]);
@@ -11,6 +11,51 @@ export default function Create() {
   const addInput = (field) => {
     setInputs([...inputs, { ...field, id: uuid() }]);
   };
+
+  const fields = [
+  {
+    tagname: 'input',
+    clsname: 'input',
+    properties: {
+      title: 'Textbox',
+      type: { text: true, number: false, email: false, password: false },
+      placeholder: '',
+    },
+  },
+  {
+    tagname: 'textarea',
+    clsname: 'input',
+    properties: {
+      title: 'Textarea',
+      placeholder: '',
+    },
+  },
+  {
+    tagname: 'checkbox',
+    clsname: 'input',
+    properties: {
+      title: 'Checkbox',
+      options: ['Option'],
+    },
+  },
+  {
+    tagname: 'radio',
+    clsname: 'input',
+    properties: {
+      title: 'Radio',
+      options: ['Option'],
+    },
+  },
+  {
+    tagname: 'select',
+    clsname: 'input',
+    properties: {
+      title: 'Select',
+      placeholder: 'Select an option',
+      options: [],
+    },
+  },
+];
 
   return (
     <div>
