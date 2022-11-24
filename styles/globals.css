@@ -25,3 +25,7 @@ body {
 .btn-success {
  @apply bg-green-700 text-white;
 }
+
+.btn-gray {
+  @apply bg-gray-200;
+}
