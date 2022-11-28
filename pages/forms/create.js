@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import InputField from '../../components/application/InputField';
 import Property from '../../components/application/Property';
-// import { fields as formElements } from '../../utils/fields';
 
 export default function Create() {
   const [inputs, setInputs] = useState([]);
@@ -58,9 +57,9 @@ export default function Create() {
 ];
 
   return (
-    <div>
+    <div className="min-h-[90vh]">
       <h1 className="text-3xl font-semibold">Create a new form</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-5 gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 my-5 gap-2">
         <div className="card">
           <h2 className="text-lg">Inputs</h2>
           {fields.map((field) => (
@@ -98,6 +97,9 @@ export default function Create() {
             );
           })}
         </div>
+      </div>
+      <div className="card sticky right-0 left-0 top-full text-right">
+        <button className="btn btn-success mr-7">Save</button>
       </div>
     </div>
   );
