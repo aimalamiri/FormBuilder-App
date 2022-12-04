@@ -1,7 +1,9 @@
+import { EyeIcon, TrashIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { getForms } from '../../api/forms';
+import Swal from 'sweetalert2';
+import { deleteForm, getForms } from '../../api/forms';
 
 export default function Index() {
   const [forms, setForms] = useState([]);
@@ -10,9 +12,26 @@ export default function Index() {
     getForms().then((res) => {
       setForms(res);
     });
-  }, []);
+  }, [forms]);
 
-  console.log(forms);
+  const removeForm = (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#15803d',
+      cancelButtonColor: '#b91c1c',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteForm(id).then((res) => {
+          setForms([]);
+          Swal.fire('Deleted!', 'The form has been deleted.', 'success');
+        });
+      }
+    });
+  };
 
   return (
     <div>
@@ -35,8 +54,18 @@ export default function Index() {
               <tr key={form.id} className="hover:bg-gray-100">
                 <td className="px-5 py-2">{form.name}</td>
                 <td className="px-5 py-2">{form.description}</td>
-                <td className="px-5 py-2">
-                  <button className="btn btn-success btn-sm">View</button>
+                <td className="px-5 py-2 flex gap-2">
+                  <button className="btn btn-success btn-sm flex items-center gap-2">
+                    <EyeIcon className="h-5 w-5 text-white" />
+                    View
+                  </button>
+                  <button
+                    className="btn btn-sm btn-red flex items-center gap-2"
+                    onClick={() => removeForm(form.id)}
+                  >
+                    <TrashIcon className="h-5 w-5 text-white" />
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}

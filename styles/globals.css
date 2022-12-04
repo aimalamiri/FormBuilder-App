@@ -37,3 +37,7 @@ html {
 .btn-gray {
   @apply bg-gray-200;
 }
+
+.btn-red {
+  @apply bg-red-700 text-white;
+}
