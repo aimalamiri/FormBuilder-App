@@ -12,10 +12,20 @@ export const getForms = async () => {
 };
 
 export const createForm = async (form) => {
-  console.log(form);
   if (typeof window !== 'undefined') {
     return await axios
       .post('/api/forms', { form })
+      .then((res) => {
+        return res.data;
+      })
+      .catch((error) => error);
+  }
+};
+
+export const deleteForm = async (id) => {
+  if (typeof window !== 'undefined') {
+    return await axios
+      .delete(`/api/forms/${id}`)
       .then((res) => {
         return res.data;
       })
