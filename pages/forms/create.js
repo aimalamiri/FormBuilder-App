@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import Swal from 'sweetalert2';
 import { v4 as uuid } from 'uuid';
+import { createForm } from '../../api/forms';
 import InputField from '../../components/application/InputField';
 import Property from '../../components/application/Property';
 
@@ -10,6 +12,21 @@ export default function Create() {
 
   const addInput = (field) => {
     setInputs([...inputs, { ...field, id: uuid() }]);
+  };
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const addForm = () => {
+    createForm({ ...form, fields: JSON.stringify(inputs) }).then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Form has be created successfully!',
+      });
+      setForm({name: '', description: ''});
+      setInputs([]);
+    });
   };
 
   const fields = [
@@ -59,11 +76,18 @@ export default function Create() {
 
   return (
     <div className="min-h-[90vh]">
-      <h1 className="text-3xl font-semibold">Create a new form</h1>
+      <h1 className="text-3xl font-semibold mb-4">Create a new form</h1>
       <div className="card grid grid-cols-2 gap-4">
         <label className="flex justify-end items-center gap-2" htmlFor="name">
           Name:
-          <input type="text" name="name" value={form.name} onChange={() => {}} className="input" id="name" />
+          <input
+            type="text"
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+            className="input"
+            id="name"
+          />
         </label>
         <label className="flex justify-start items-center gap-2" htmlFor="description">
           Description:
@@ -71,7 +95,7 @@ export default function Create() {
             type="text"
             name="description"
             value={form.description}
-            onChange={() => {}}
+            onChange={handleChange}
             className="input w-full"
             id="description"
           />
@@ -117,7 +141,9 @@ export default function Create() {
         </div>
       </div>
       <div className="card sticky right-0 left-0 top-full text-right">
-        <button className="btn btn-success mr-7">Save</button>
+        <button className="btn btn-success mr-7" onClick={addForm}>
+          Save
+        </button>
       </div>
     </div>
   );
