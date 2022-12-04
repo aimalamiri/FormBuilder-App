@@ -60,12 +60,12 @@ export default function Create() {
   return (
     <div className="min-h-[90vh]">
       <h1 className="text-3xl font-semibold">Create a new form</h1>
-      <div className="card grid grid-cols-2">
-        <label className="w-2/4 flex justify-end items-center gap-2" htmlFor="name">
-          <span className="flex justify-end">Name:</span>
-          <input type="text" name="name" value={form.name} onChange={() => {}} className="input" />
+      <div className="card grid grid-cols-2 gap-4">
+        <label className="flex justify-end items-center gap-2" htmlFor="name">
+          Name:
+          <input type="text" name="name" value={form.name} onChange={() => {}} className="input" id="name" />
         </label>
-        <label className="w-2/4 flex justify-start items-center gap-2" htmlFor="name">
+        <label className="flex justify-start items-center gap-2" htmlFor="description">
           Description:
           <textarea
             type="text"
@@ -73,6 +73,7 @@ export default function Create() {
             value={form.description}
             onChange={() => {}}
             className="input w-full"
+            id="description"
           />
         </label>
       </div>
