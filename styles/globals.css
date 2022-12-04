@@ -23,7 +23,11 @@ html {
 }
 
 .btn {
-  @apply py-2 px-5 rounded hover:opacity-80 transition ease-in delay-200;
+  @apply py-2 px-5 rounded hover:opacity-80 transition ease-in-out delay-100;
+}
+
+.btn-sm {
+  @apply py-1 px-2 text-sm;
 }
 
 .btn-success {

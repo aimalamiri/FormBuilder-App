@@ -33,10 +33,10 @@ export default function Index() {
           <tbody>
             {forms.map((form) => (
               <tr key={form.id} className="hover:bg-gray-100">
-                <td className="px-5">{form.name}</td>
-                <td className="px-5">{form.description}</td>
-                <td className="px-5">
-                  <button className="btn">View</button>
+                <td className="px-5 py-2">{form.name}</td>
+                <td className="px-5 py-2">{form.description}</td>
+                <td className="px-5 py-2">
+                  <button className="btn btn-success btn-sm">View</button>
                 </td>
               </tr>
             ))}
