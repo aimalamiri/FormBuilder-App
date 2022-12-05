@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { signup } from '../../api/auth';
 import { login } from '../../redux/reducers/auth/authSlice';
 import useAuth from '../../utils/useAuth';
-import Input from '../../components/application/input';
+import Input from '../../components/application/Input';
 
 export default function Signup() {
   const data = {first_name: '', last_name: '', email: '', password: ''};
