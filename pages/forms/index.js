@@ -12,7 +12,7 @@ export default function Index() {
     getForms().then((res) => {
       setForms(res);
     });
-  }, [forms]);
+  }, []);
 
   const removeForm = (id) => {
     Swal.fire({
