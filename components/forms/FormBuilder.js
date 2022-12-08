@@ -1,11 +1,12 @@
+import { redirect } from 'next/dist/server/api-utils';
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { v4 as uuid } from 'uuid';
-import { createForm } from '../../api/forms';
+import { createForm, updateForm } from '../../api/forms';
 import InputField from '../application/InputField';
 import Property from '../application/Property';
 
-export default function FormBuilder({ type, inputsData, formData }) {
+export default function FormBuilder({ type, inputsData, formData, id }) {
   const [inputs, setInputs] = useState([]);
   const [form, setForm] = useState({ name: '', description: '' });
   const [activeField, setActiveField] = useState({});
@@ -13,7 +14,7 @@ export default function FormBuilder({ type, inputsData, formData }) {
   useEffect(() => {
     if (formData) setForm(formData);
     if (inputsData) setInputs(inputsData);
-  }, []);
+  }, [formData, inputsData]);
 
   const addInput = (field) => {
     setInputs([...inputs, { ...field, id: uuid() }]);
@@ -34,9 +35,19 @@ export default function FormBuilder({ type, inputsData, formData }) {
     });
   };
 
+  const updateFormData = () => {
+    updateForm({ ...form, fields: JSON.stringify(inputs) }, id).then((res) => {
+      Swal.fire({
+        icon: 'info',
+        title: 'Form has be updated successfully!',
+      });
+      // redirect('/forms');
+    });
+  };
+
   const submitForm = () => {
     if (type === 'create') addForm();
-    if (type === 'update') editForm();
+    if (type === 'update') updateFormData();
   }
 
   const fields = [

@@ -59,6 +59,12 @@ export default function Index() {
                     <EyeIcon className="h-5 w-5 text-white" />
                     View
                   </button>
+                  <Link href={`/forms/edit/${form.id}`}>
+                    <button className="btn btn-success btn-sm flex items-center gap-2">
+                      <EyeIcon className="h-5 w-5 text-white" />
+                      Edit
+                    </button>
+                  </Link>
                   <button
                     className="btn btn-sm btn-red flex items-center gap-2"
                     onClick={() => removeForm(form.id)}
