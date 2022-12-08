@@ -11,6 +11,28 @@ export const getForms = async () => {
   }
 };
 
+export const editForm = async (id) => {
+  if (typeof window !== 'undefined') {
+    return await axios
+      .get(`/api/forms/${id}/edit`)
+      .then((res) => {
+        return res;
+      })
+      .catch((error) => error);
+  }
+};
+
+export const updateForm = async (form, id) => {
+  if (typeof window !== 'undefined') {
+    return await axios
+      .put(`/api/forms/${id}`, { form })
+      .then((res) => {
+        return res;
+      })
+      .catch((error) => error);
+  }
+};
+
 export const createForm = async (form) => {
   if (typeof window !== 'undefined') {
     return await axios
