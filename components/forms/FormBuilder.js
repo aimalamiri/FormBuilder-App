@@ -5,11 +5,13 @@ import { createForm, updateForm } from '../../api/forms';
 import InputField from '../application/InputField';
 import Property from '../application/Property';
 import { fields } from '../../utils/fields';
+import { useRouter } from 'next/router';
 
 export default function FormBuilder({ type, inputsData, formData, id }) {
   const [inputs, setInputs] = useState([]);
   const [form, setForm] = useState({ name: '', description: '' });
   const [activeField, setActiveField] = useState({});
+  const router = useRouter();
 
   useEffect(() => {
     if (formData) setForm(formData);
@@ -41,7 +43,7 @@ export default function FormBuilder({ type, inputsData, formData, id }) {
         icon: 'info',
         title: 'Form has be updated successfully!',
       });
-      // redirect('/forms');
+      router.replace('/forms');
     });
   };
 
