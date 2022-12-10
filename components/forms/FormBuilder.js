@@ -1,10 +1,10 @@
-import { redirect } from 'next/dist/server/api-utils';
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { v4 as uuid } from 'uuid';
 import { createForm, updateForm } from '../../api/forms';
 import InputField from '../application/InputField';
 import Property from '../application/Property';
+import { fields } from '../../utils/fields';
 
 export default function FormBuilder({ type, inputsData, formData, id }) {
   const [inputs, setInputs] = useState([]);
@@ -50,51 +50,6 @@ export default function FormBuilder({ type, inputsData, formData, id }) {
     if (type === 'update') updateFormData();
   }
 
-  const fields = [
-    {
-      tagname: 'input',
-      clsname: 'input',
-      properties: {
-        title: 'Textbox',
-        type: { text: true, number: false, email: false, password: false },
-        placeholder: '',
-      },
-    },
-    {
-      tagname: 'textarea',
-      clsname: 'input',
-      properties: {
-        title: 'Textarea',
-        placeholder: '',
-      },
-    },
-    {
-      tagname: 'checkbox',
-      clsname: 'input',
-      properties: {
-        title: 'Checkbox',
-        options: ['Option'],
-      },
-    },
-    {
-      tagname: 'radio',
-      clsname: 'input',
-      properties: {
-        title: 'Radio',
-        options: ['Option'],
-      },
-    },
-    {
-      tagname: 'select',
-      clsname: 'input',
-      properties: {
-        title: 'Select',
-        placeholder: 'Select an option',
-        options: [],
-      },
-    },
-  ];
-
   return (
     <div className="min-h-[90vh]">
       <div className="card grid grid-cols-2 gap-4">
@@ -124,7 +79,7 @@ export default function FormBuilder({ type, inputsData, formData, id }) {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 my-5 gap-2">
         <div className="card">
           <h2 className="text-lg">Inputs</h2>
-          {fields.map((field) => (
+          {fields().map((field) => (
             <button
               className="btn btn-gray w-full mt-3"
               key={field.properties.title}
