@@ -1,4 +1,4 @@
-export const fields = [
+export const fields = () => [
   {
     tagname: 'input',
     clsname: 'input',

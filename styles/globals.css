@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 body {
- @apply text-gray-700 bg-gray-200;
+ @apply text-gray-700 bg-gray-200 min-h-screen;
+}
+
+html {
+  @apply min-h-screen;
 }
 
 .card {
@@ -19,7 +23,11 @@ body {
 }
 
 .btn {
-  @apply py-2 px-5 rounded hover:opacity-80 transition ease-in delay-200;
+  @apply py-2 px-5 rounded hover:opacity-80 transition ease-in-out delay-100;
+}
+
+.btn-sm {
+  @apply py-1 px-2 text-sm;
 }
 
 .btn-success {
@@ -28,4 +36,8 @@ body {
 
 .btn-gray {
   @apply bg-gray-200;
+}
+
+.btn-red {
+  @apply bg-red-700 text-white;
 }

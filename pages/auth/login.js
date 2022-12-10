@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login as loginApi } from '../../api/auth';
-import Input from '../../components/application/InputField/Input';
+import Input from '../../components/application/Input';
 import { login } from '../../redux/reducers/auth/authSlice';
 import useAuth from '../../utils/useAuth';
 
