@@ -60,6 +60,12 @@ export default function Index() {
                     View
                   </button>
                   <Link href={`/forms/edit/${form.id}`}>
+                    <button className="btn btn-blue btn-sm flex items-center gap-2">
+                      <EyeIcon className="h-5 w-5 text-white" />
+                      Entry
+                    </button>
+                  </Link>
+                  <Link href={`/forms/edit/${form.id}`}>
                     <button className="btn btn-success btn-sm flex items-center gap-2">
                       <EyeIcon className="h-5 w-5 text-white" />
                       Edit

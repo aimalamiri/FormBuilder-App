@@ -34,6 +34,10 @@ html {
  @apply bg-green-700 text-white;
 }
 
+.btn-blue {
+ @apply bg-blue-700 text-white;
+}
+
 .btn-gray {
   @apply bg-gray-200;
 }
