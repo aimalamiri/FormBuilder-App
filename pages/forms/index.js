@@ -59,7 +59,7 @@ export default function Index() {
                     <EyeIcon className="h-5 w-5 text-white" />
                     View
                   </button>
-                  <Link href={`/forms/edit/${form.id}`}>
+                  <Link href={`/entry/${form.id}`}>
                     <button className="btn btn-blue btn-sm flex items-center gap-2">
                       <EyeIcon className="h-5 w-5 text-white" />
                       Entry
