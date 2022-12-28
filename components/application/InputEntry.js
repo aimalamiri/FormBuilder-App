@@ -1,10 +1,6 @@
 import { getType } from './InputField/typeOptions';
 
-export default function InputField({ input, setActiveField }) {
-  const showProps = (field) => {
-    setActiveField({ ...field.properties, id: field.id });
-  };
-
+export default function InputEntry({ input, onChange }) {
   if (input.tagname === 'input') {
     return (
       <label htmlFor={input.id}>
@@ -12,10 +8,10 @@ export default function InputField({ input, setActiveField }) {
         <input.tagname
           className={input.clsname}
           type={getType(input.properties.type)}
+          key={input.id}
           id={input.id}
-          name={input.id}
-          onClick={() => showProps(input)}
           placeholder={input.properties.placeholder}
+          onChange={onChange}
         />
       </label>
     );
@@ -26,21 +22,20 @@ export default function InputField({ input, setActiveField }) {
         <input.tagname
           className={input.clsname}
           id={input.id}
-          name={input.id}
-          onClick={() => showProps(input)}
           placeholder={input.properties.placeholder}
+          onChange={onChange}
         />
       </label>
     );
   } else if (input.tagname === 'checkbox') {
     return (
-      <div onClick={() => showProps(input)}>
+      <div>
         {input.properties.title}
         <div className="flex items-center gap-6 flex-wrap">
           {input.properties.options.map((option) => (
             <label htmlFor={option} key={option} className="flex items-center">
               {option}
-              <input type="checkbox" className="ml-2" name={option} id={option} value={option} />
+              <input type="checkbox" className="ml-2" name={input.id} id={input.id} value={option} onChange={onChange} />
             </label>
           ))}
         </div>
@@ -48,13 +43,13 @@ export default function InputField({ input, setActiveField }) {
     );
   } else if (input.tagname === 'radio') {
     return (
-      <div onClick={() => showProps(input)}>
+      <div>
         {input.properties.title}
-        <div onClick={() => showProps(input)} className="flex items-center gap-6 flex-wrap">
+        <div className="flex items-center gap-6 flex-wrap">
           {input.properties.options.map((option) => (
             <label htmlFor={option} key={option} className="flex items-center">
               {option}
-              <input type="radio" className="ml-2" id={option} name={input.id} value={option} />
+              <input type="radio" className="ml-2" name={input.id} id={input.id} value={option} onChange={onChange} />
             </label>
           ))}
         </div>
@@ -67,9 +62,8 @@ export default function InputField({ input, setActiveField }) {
         <input.tagname
           className={input.clsname}
           id={input.id}
-          name={input.id}
-          onClick={() => showProps(input)}
           placeholder={input.properties.placeholder}
+          onChange={onChange}
         >
           {input.properties.options.map((option) => (
             <option value={option} key={option}>

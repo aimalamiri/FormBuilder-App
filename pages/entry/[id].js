@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { getForm } from '../../api/entries';
 import { useState } from 'react';
-import InputField from '../../components/application/InputField';
+import InputEntry from '../../components/application/InputEntry';
 
 export default function Entry() {
   const router = useRouter();
@@ -10,6 +10,7 @@ export default function Entry() {
   const [form, setForm] = useState({});
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+  const [entry, setEntry] = useState({});
 
   const start = () => {
     getForm(id).then((res) => {
@@ -19,6 +20,10 @@ export default function Entry() {
         setDescription(res.data.description);
       }
     });
+  };
+
+  const changeHandler = (e) => {
+    setEntry({ ...entry, [e.target.id]: e.target.value });
   };
 
   return (
@@ -31,10 +36,10 @@ export default function Entry() {
             <div className="w-1/3">
               {form.map((field) => (
                 <div className="my-3 text-left" key={field.id}>
-                  <InputField input={field} />
+                  <InputEntry input={field} onChange={changeHandler} />
                 </div>
               ))}
-            </div>
+            </div>{' '}
           </div>
         ) : (
           <button className="btn btn-success my-10" onClick={start}>
