@@ -23,7 +23,7 @@ export default function Entry() {
   };
 
   const changeHandler = (e) => {
-    setEntry({ ...entry, [e.target.id]: e.target.value });
+    setEntry({ ...entry, [e.target.name]: e.target.value });
   };
 
   return (

@@ -10,6 +10,7 @@ export default function InputEntry({ input, onChange }) {
           type={getType(input.properties.type)}
           key={input.id}
           id={input.id}
+          name={input.id}
           placeholder={input.properties.placeholder}
           onChange={onChange}
         />
@@ -22,6 +23,7 @@ export default function InputEntry({ input, onChange }) {
         <input.tagname
           className={input.clsname}
           id={input.id}
+          name={input.id}
           placeholder={input.properties.placeholder}
           onChange={onChange}
         />
@@ -35,7 +37,7 @@ export default function InputEntry({ input, onChange }) {
           {input.properties.options.map((option) => (
             <label htmlFor={option} key={option} className="flex items-center">
               {option}
-              <input type="checkbox" className="ml-2" name={input.id} id={input.id} value={option} onChange={onChange} />
+              <input type="checkbox" className="ml-2" name={input.id} id={option} value={option} onChange={onChange} />
             </label>
           ))}
         </div>
@@ -49,7 +51,7 @@ export default function InputEntry({ input, onChange }) {
           {input.properties.options.map((option) => (
             <label htmlFor={option} key={option} className="flex items-center">
               {option}
-              <input type="radio" className="ml-2" name={input.id} id={input.id} value={option} onChange={onChange} />
+              <input type="radio" className="ml-2" name={input.id} id={option} value={option} onChange={onChange} />
             </label>
           ))}
         </div>
@@ -61,6 +63,7 @@ export default function InputEntry({ input, onChange }) {
         {input.properties.title}
         <input.tagname
           className={input.clsname}
+          name={input.id}
           id={input.id}
           placeholder={input.properties.placeholder}
           onChange={onChange}
